@@ -56,23 +56,23 @@ export function SideNav() {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-full w-[240px] flex-col border-r bg-white">
-      <div className="flex-1 space-y-1 p-4">
+    <div className="flex flex-col h-full w-[240px] border-r bg-gray-100">
+      <div className="flex-1 space-y-4 p-4 overflow-y-auto">
         {sidebarItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-gray-100 ${
-              pathname === item.href ? "bg-gray-100 text-blue-600" : "text-gray-700"
+            className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-gray-300 ${
+              pathname === item.href ? "bg-gray-800 text-blue-400" : "text-black font-semibold"
             }`}
           >
             <item.icon className="h-4 w-4" />
             <span>{item.title}</span>
             {item.badge && (
-              <span className={`ml-auto rounded-full px-2 py-0.5 text-xs ${
-                item.badge === "New" ? "bg-blue-100 text-blue-600" :
-                item.badge === "Team" ? "bg-purple-100 text-purple-600" :
-                "bg-gray-100 text-gray-600"
+              <span className={`ml-auto rounded-lg px-2 py-0.5 text-xs ${
+                item.badge === "New" ? "bg-blue-500 text-blue-200" :
+                item.badge === "Team" ? "bg-purple-900 text-purple-200" :
+                "bg-gray-700 text-gray-200"
               }`}>
                 {item.badge}
               </span>
@@ -80,15 +80,15 @@ export function SideNav() {
           </Link>
         ))}
       </div>
-      <div className="p-4">
-        <div className="rounded-lg bg-yellow-50 p-4">
+      <div className="p-4 mb-10 mt-7">
+        <div className="rounded-lg bg-yellow-900 p-4">
           <div className="flex items-center gap-4">
             <div className="flex-1">
-              <h4 className="font-semibold">Black Friday Sale!</h4>
-              <p className="text-sm text-yellow-900">Up to 50% OFF!</p>
+              <h4 className="font-semibold text-yellow-100">Black Friday Sale!</h4>
+              <p className="text-sm text-yellow-200">Up to 50% OFF!</p>
             </div>
           </div>
-          <button className="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded transition-colors">
+          <button className="mt-4 w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded transition-colors">
             Start Now
           </button>
         </div>
