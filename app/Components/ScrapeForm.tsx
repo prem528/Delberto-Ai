@@ -40,7 +40,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen p-4">
+    <div className="flex flex-col  p-4">
       <h1 className="text-2xl font-bold flex justify-center items-center mb-4">Enter Your URL </h1>
       <form onSubmit={handleSubmit} className="flex justify-center items-center mb-4">
         <input
