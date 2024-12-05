@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import DescriptionGenerator from "./DescriptionGenerator";
 
 interface ScrapeResponse {
   title: string | null;
@@ -92,6 +93,7 @@ export default function HomePage() {
               )}
             </div>
           )}
+          <DescriptionGenerator title={data.title} />
         </div>
       </div>
     </div>
