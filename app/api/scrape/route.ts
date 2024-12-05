@@ -36,9 +36,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           .querySelector('meta[name="description"]')
           ?.getAttribute("content") || null;
 
-      const images = Array.from(document.querySelectorAll("img"))
-        .map((img) => img.getAttribute("src"))
-        .filter((src): src is string => !!src);
+          const images = Array.from(document.querySelectorAll("img"))
+          .filter((img) => {
+            
+            return img.classList.contains("imageBlock") || 
+                   img.closest("altImages") || 
+                   (img.getAttribute("src")?.includes("product"));
+          })
+          .map((img) => img.getAttribute("src"))
+          .filter((src): src is string => !!src);
 
       return { title, description, images };
     });

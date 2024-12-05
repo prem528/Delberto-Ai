@@ -41,38 +41,61 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col  p-4">
-      <h1 className="text-2xl font-bold flex justify-center items-center mb-4">Enter Your URL </h1>
-      <form onSubmit={handleSubmit} className="flex justify-center items-center mb-4">
-        <input
-          type="url"
-          placeholder="https://www.example.com"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-          className="p-2 w-72 mr-2 border border-black rounded"
-        />
-        <button
-          type="submit"
-          className="p-2 bg-blue-600 text-white rounded cursor-pointer"
-        >
-          Scrape
-        </button>
-      </form>
+    <div className="flex flex-col h-[calc(100vh-4rem)] lg:ml-64 pt-16">
+      <div className="flex flex-1 justify-center items-center">
+        <div className="p-4 border border-gray-200 rounded shadow-lg bg-white max-w-md w-full">
+          <h1 className="text-2xl font-bold text-center mb-4">
+            Enter Your URL
+          </h1>
+          <form onSubmit={handleSubmit} className="flex flex-col items-center">
+            <input
+              type="url"
+              placeholder="https://www.example.com"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              required
+              className="p-2 w-full mb-4 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+            />
+            <button
+              type="submit"
+              className="p-2 bg-blue-600 text-white rounded w-full hover:bg-blue-700 transition-colors"
+            >
+              Scrape
+            </button>
+          </form>
 
-      {error && <p className="text-red-500">{error}</p>}
+          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
-      {data && (
-        <div>
-          {data.title && <h2 className="text-xl flex justify-center items-center">Title: {data.title}</h2>}
-          {data.description && (
-            <span className="text-xl flex justify-center items-center" >
-              <h2 >Description: {data.description} </h2>
-            </span>
+          {data && (
+            <div className="mt-4">
+              {data.title && (
+                <h2 className="text-xl font-semibold text-center">
+                  Title: {data.title}
+                </h2>
+              )}
+              {data.description && (
+                <p className="text-center mt-2">
+                  Description: {data.description}
+                </p>
+              )}
+              {data.images && data.images.length > 0 && (
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {data.images.map((image, index) => (
+                    <div key={index} className="flex justify-center">
+                      <img
+                        src={image}
+                        alt={`Product image ${index + 1}`}
+                        className="rounded-lg shadow-md max-w-full h-auto"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           )}
           <DescriptionGenerator title={data.title} />
         </div>
-      )}
+      </div>
     </div>
   );
 }
